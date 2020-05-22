@@ -11,3 +11,8 @@ Install dependencies
 ```console
 make install
 ```
+
+### Testing
+```console
+make test
+```
