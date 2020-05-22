@@ -1,3 +1,4 @@
 email-validator==1.1.1
 pydantic==1.5.1
 python-dotenv==0.13.0
+sendgrid==6.3.1
