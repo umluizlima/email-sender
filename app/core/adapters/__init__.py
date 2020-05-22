@@ -1,0 +1,1 @@
+from .sendgrid import SendgridAdapter
