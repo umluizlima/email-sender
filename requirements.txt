@@ -1,0 +1,2 @@
+email-validator==1.1.1
+pydantic==1.5.1
