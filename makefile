@@ -7,3 +7,7 @@ install:
 test:
 	PYTHONPATH=. \
 	python -m pytest --cov=app
+
+.PHONY: run
+run:
+	uvicorn --reload app.api:api
