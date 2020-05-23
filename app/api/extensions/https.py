@@ -1,8 +1,6 @@
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
-from ..settings import settings
 
-
-def configure(app, settings=settings):
+def configure(app, settings):
     if settings.ENV != "dev":
         app.add_middleware(HTTPSRedirectMiddleware)
