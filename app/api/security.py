@@ -11,7 +11,7 @@ API_KEY_HEADER = APIKeyHeader(name="x-api-key")
 
 
 class ApiKeyChecker:
-    def __init__(self, settings=settings):
+    def __init__(self, settings: BaseSettings = settings):
         self.settings = settings
 
     def __call__(self, api_key: str = Security(API_KEY_HEADER)):
