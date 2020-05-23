@@ -2,6 +2,7 @@ from pydantic import BaseSettings, EmailStr
 
 
 class Settings(BaseSettings):
+    ENV: str = "dev"
     SENTRY_DSN: str = None
     API_KEY: str = "you-will-want-something-safe-here"
     DEFAULT_EMAIL_ADDRESS: EmailStr = "default@email.com"
