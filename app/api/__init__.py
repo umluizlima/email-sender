@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 
 from ..settings import settings
-from . import https, sentry, routers
-
-sentry.configure()
+from . import extensions, routers
 
 api = FastAPI()
-https.configure(api)
+
+extensions.configure(api, settings)
 routers.configure(api, settings)
