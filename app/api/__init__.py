@@ -1,13 +1,10 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 
-from . import https, sentry
-from .routers import emails_router
-from .security import api_key_checker
+from ..settings import settings
+from . import https, sentry, routers
 
 sentry.configure()
 
 api = FastAPI()
 https.configure(api)
-api.include_router(
-    emails_router, tags=["emails"], dependencies=[Depends(api_key_checker)]
-)
+routers.configure(api, settings)
