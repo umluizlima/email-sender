@@ -59,3 +59,11 @@ There are many email services available out there that you can choose from. If t
 1. Creating a `YourEmailServiceAdapter` class that extends `BaseAdapter` and implements its `send` method;
 2. Adding a value to `EmailService` enum corresponding to your new service;
 3. Mapping your new service on the `ADAPTERS` dictionary, so it can be chosen from by the `EMAIL_SERVICE` environment variable;
+
+## Deployment
+
+### Heroku
+
+The `app.json`, `Procfile`, and `runtime.txt` files on this repository are specific for deployment on [Heroku](https://www.heroku.com). It can be done by clicking the following button:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
