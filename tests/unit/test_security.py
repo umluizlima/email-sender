@@ -4,7 +4,7 @@ from pytest import fixture, raises
 from app.api.security import ApiKeyChecker
 from app.settings import Settings
 
-settings = Settings(API_KEY="some-secret-key")
+settings = Settings(_env_file=None, API_KEY="some-secret-key")
 
 
 @fixture

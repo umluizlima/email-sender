@@ -9,7 +9,9 @@ from app.core.schemas import EmailSchema
 from app.settings import Settings
 
 settings = Settings(
-    DEFAULT_EMAIL_ADDRESS="some@email.com", SENDGRID_API_KEY="some_api_key",
+    _env_file=None,
+    DEFAULT_EMAIL_ADDRESS="some@email.com",
+    SENDGRID_API_KEY="some_api_key",
 )
 
 message = EmailSchema(
