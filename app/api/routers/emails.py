@@ -9,5 +9,4 @@ router = APIRouter()
 
 @router.post("/emails", status_code=HTTP_202_ACCEPTED)
 def send(message: EmailSchema, adapter: BaseAdapter = Depends(get_active_adapter)):
-    print(adapter)
     return adapter.send(message)

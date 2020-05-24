@@ -48,7 +48,7 @@ After choosing which service to use you'll need to:
 2. Verify your email address as an authorized sender;
 3. Generate and set the API key as environment variable (check `Settings` class for naming references);
 
-The verified email address must be used either as the `from` attribute on requests or as the `DEFAUL_EMAIL_ADDRESS` environment variable.
+The verified email address must be used either as the `from` attribute on requests or as the `DEFAULT_EMAIL_ADDRESS` environment variable.
 
 If the available services do not suffice, you can [add a new email service integration](#adding-an-email-service-integration).
 
