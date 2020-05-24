@@ -1,5 +1,3 @@
-from unittest.mock import MagicMock
-
 from pytest import fixture
 from starlette.status import (
     HTTP_202_ACCEPTED,
@@ -9,7 +7,6 @@ from starlette.status import (
 )
 
 from app.api import api
-from app.core.adapters import SendgridAdapter
 from app.core.schemas import EmailSchema
 
 message_dict = {
@@ -24,12 +21,12 @@ message = EmailSchema(**message_dict)
 
 
 @fixture(scope="function")
-def send_response(client, settings):
-    SendgridAdapter.send = MagicMock()
+def send_response(adapter, client, settings):
+    adapter.reset_mock()
     yield client.post(
         "/emails", json=message_dict, headers={"x-api-key": settings.API_KEY}
     )
-    SendgridAdapter.send.assert_called_once_with(message)
+    adapter.send.assert_called_once_with(message)
 
 
 def test_send_email_endpoint_should_accept_post(send_response):
