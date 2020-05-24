@@ -9,7 +9,8 @@ A service to send email messages.
 
 ### Integrations (all on free tiers)
 - [Heroku](https://www.heroku.com/free) for automated deployment;
-- [Sendgrid](https://sendgrid.com/pricing/) for email service;
+- [Mailjet](https://www.mailjet.com/pricing/) as an email service alternative;
+- [Sendgrid](https://sendgrid.com/pricing/) as another email service alternative;
 - [Sentry](https://sentry.io/pricing/) for error tracking;
 - [Travis-CI](https://travis-ci.com/plans) for automated testing;
 
