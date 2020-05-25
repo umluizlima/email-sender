@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     SENDGRID_API_KEY: str = "get_your_api_key_from_sendgrid_dashboard"
     MAILJET_API_KEY: str = "get_your_api_key_from_mailjet_dashboard"
     MAILJET_API_SECRET: str = "get_your_api_secret_from_mailjet_dashboard"
-    BROKER_URL: str = "amqp://localhost"
+    BROKER_URL: str = "amqp://rabbitmq:rabbitmq@localhost"
     BROKER_POOL_LIMIT: Optional[int] = 1
 
     class Config:
