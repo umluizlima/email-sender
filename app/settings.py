@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Optional
 
 from pydantic import BaseSettings, EmailStr
 
@@ -18,6 +19,7 @@ class Settings(BaseSettings):
     MAILJET_API_KEY: str = "get_your_api_key_from_mailjet_dashboard"
     MAILJET_API_SECRET: str = "get_your_api_secret_from_mailjet_dashboard"
     BROKER_URL: str = "amqp://localhost"
+    BROKER_POOL_LIMIT: Optional[int] = 1
 
     class Config:
         env_file = ".env"
