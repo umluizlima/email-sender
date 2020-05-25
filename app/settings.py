@@ -17,10 +17,12 @@ class Settings(BaseSettings):
     SENDGRID_API_KEY: str = "get_your_api_key_from_sendgrid_dashboard"
     MAILJET_API_KEY: str = "get_your_api_key_from_mailjet_dashboard"
     MAILJET_API_SECRET: str = "get_your_api_secret_from_mailjet_dashboard"
+    BROKER_URL: str = "amqp://localhost"
 
     class Config:
         env_file = ".env"
         case_sensitive = True
+        fields = {"BROKER_URL": {"env": ["BROKER_URL", "CLOUDAMQP_URL"]}}
 
 
 settings = Settings()
