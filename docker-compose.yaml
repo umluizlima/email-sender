@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  broker:
+    image: rabbitmq:3.8.3-alpine
+    container_name: "email-sender-broker"
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+    ports:
+      - "5672:5672"
