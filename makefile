@@ -10,7 +10,7 @@ broker_init:
 .PHONY: test
 test:
 	PYTHONPATH=. \
-	python -m pytest --cov=app
+	python -m pytest --cov=app -s
 
 .PHONY: run_worker
 run_worker: broker_init
