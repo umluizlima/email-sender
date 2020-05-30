@@ -6,22 +6,9 @@ from starlette.status import (
     HTTP_422_UNPROCESSABLE_ENTITY,
 )
 
-from app.api import api
-from app.core.schemas import EmailSchema
-
-message_dict = {
-    "from": "from@email.com",
-    "to": "to@email.com",
-    "subject": "subject",
-    "content": "content",
-    "content_type": "text/html",
-}
-
-message = EmailSchema(**message_dict)
-
 
 @fixture(scope="function")
-def send_response(adapter, client, settings):
+def send_response(adapter, client, message, message_dict, settings):
     adapter.reset_mock()
     yield client.post(
         "/emails", json=message_dict, headers={"x-api-key": settings.API_KEY}

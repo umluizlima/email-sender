@@ -5,8 +5,7 @@ from starlette.testclient import TestClient
 
 from app.api import api
 from app.api.security import ApiKeyChecker, api_key_checker
-from app.core.adapters import ActiveAdapter, get_active_adapter
-from app.settings import EmailService, Settings
+from app.core.adapters import get_active_adapter
 
 mock_adapter = MagicMock()
 
@@ -18,11 +17,6 @@ def get_active_adapter_override():
 @fixture
 def adapter():
     return mock_adapter
-
-
-@fixture
-def settings():
-    return Settings(_env_file=None, API_KEY="secret-api-key")
 
 
 @fixture
