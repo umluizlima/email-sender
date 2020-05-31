@@ -7,18 +7,26 @@ A service to send email messages.
 - Requests must be authenticated with the [x-api-key](https://stoplight.io/blog/api-keys-best-practices-to-authenticate-apis/) header;
 - Request body validation with [pydantic](https://pydantic-docs.helpmanual.io/);
 - Auto-generated API docs with [fastapi](https://fastapi.tiangolo.com/)
+- Task queue for asyncronous processing of email requests with [celery](https://docs.celeryproject.org/en/stable/index.html);
+
+### Architecture
+
+![architecture](https://user-images.githubusercontent.com/9170476/83362824-8b784f80-a36a-11ea-8483-1d0fd657933c.png)
 
 ### Resources (all on free tiers)
-- [Heroku](https://www.heroku.com/free) for automated deployment;
-- [Mailjet](https://www.mailjet.com/pricing/) as an email service alternative (default);
-- [Sendgrid](https://sendgrid.com/pricing/) as another email service alternative;
-- [Sentry](https://sentry.io/pricing/) for error tracking;
-- [Travis-CI](https://travis-ci.com/plans) for automated testing;
+- [Heroku](https://www.heroku.com/) for automated deployment;
+- [Mailjet](https://www.mailjet.com/) as an email service alternative (default);
+- [Sendgrid](https://sendgrid.com/) as another email service alternative;
+- [Sentry](https://sentry.io/) for error tracking;
+- [Travis-CI](https://travis-ci.com/) for automated testing;
+- [RabbitMQ](https://www.rabbitmq.com/) on [CloudAMQP](https://www.cloudamqp.com/) as broker for task queue;
 
 ## Development
 
 ### Requirements
-- Python 3.8.1
+- [Python 3.8.1](https://realpython.com/intro-to-pyenv/)
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Installing
 Install dependencies
