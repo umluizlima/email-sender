@@ -20,13 +20,13 @@ def test_send_email_endpoint_should_accept_post(send_response):
     assert send_response.status_code != HTTP_405_METHOD_NOT_ALLOWED
 
 
+def test_send_email_should_return_status_202(send_response):
+    assert send_response.status_code == HTTP_202_ACCEPTED
+
+
 def test_send_email_should_validate_input(client, settings):
     response = client.post("/emails", json={}, headers={"x-api-key": settings.API_KEY})
     assert response.status_code == HTTP_422_UNPROCESSABLE_ENTITY
-
-
-def test_send_email_should_return_status_202(send_response):
-    assert send_response.status_code == HTTP_202_ACCEPTED
 
 
 def test_send_email_should_return_status_403_if_not_authorized(client, settings):
