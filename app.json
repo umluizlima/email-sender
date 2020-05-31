@@ -10,5 +10,6 @@
       "description": "A secret key for API authentication.",
       "generator": "secret"
     }
-  }
+  },
+  "addons": ["cloudamqp:lemur"]  
 }
