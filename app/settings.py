@@ -4,13 +4,18 @@ from typing import Optional
 from pydantic import BaseSettings, EmailStr
 
 
+class Environment(str, Enum):
+    DEVELOPMENT = "dev"
+    PRODUCTION = "prod"
+
+
 class EmailService(str, Enum):
     MAILJET = "mailjet"
     SENDGRID = "sendgrid"
 
 
 class Settings(BaseSettings):
-    ENV: str = "dev"
+    ENV: Environment = Environment.DEVELOPMENT
     SENTRY_DSN: str = None
     API_KEY: str = "you-will-want-something-safe-here"
     DEFAULT_EMAIL_ADDRESS: EmailStr = "default@email.com"
