@@ -6,7 +6,7 @@ from app.core.schemas import EmailSchema
 from .. import worker
 
 
-@worker.task
+@worker.task(name="SEND_EMAIL")
 @validate_arguments
 def send_email(message: EmailSchema):
     adapter = get_active_adapter()

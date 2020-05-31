@@ -1,6 +1,5 @@
-from celery import Celery
-
+from app.core.tasks import get_tasks_consumer
 from app.settings import settings
 
-worker = Celery("worker", broker=settings.BROKER_URL, include=["app.worker.tasks"])
+worker = get_tasks_consumer(settings, include=["app.worker.tasks"])
 worker.conf.update(broker_pool_limit=settings.BROKER_POOL_LIMIT)
