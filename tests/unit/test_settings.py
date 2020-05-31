@@ -1,7 +1,7 @@
 from pydantic import ValidationError
 from pytest import raises
 
-from app.settings import EmailService, Settings
+from app.settings import EmailService, Environment, Settings
 
 
 def test_api_key_is_set_from_env(monkeypatch):
@@ -53,3 +53,21 @@ def test_email_service_must_exist(monkeypatch):
 def test_email_service_has_default_value(monkeypatch):
     monkeypatch.delenv("EMAIL_SERVICE", raising=False)
     assert isinstance(Settings(_env_file=None).EMAIL_SERVICE, EmailService)
+
+
+def test_env_is_set_from_env(monkeypatch):
+    expected = Environment.PRODUCTION.value
+    monkeypatch.setenv("ENV", expected)
+    assert Settings(_env_file=None).ENV == expected
+
+
+def test_env_must_exist(monkeypatch):
+    expected = "some-env-that-is-not-mapped"
+    monkeypatch.setenv("ENV", expected)
+    with raises(ValidationError):
+        Settings(_env_file=None)
+
+
+def test_env_has_default_value(monkeypatch):
+    monkeypatch.delenv("ENV", raising=False)
+    assert isinstance(Settings(_env_file=None).ENV, Environment)
