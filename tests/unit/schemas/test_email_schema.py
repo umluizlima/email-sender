@@ -1,5 +1,5 @@
 from pydantic.error_wrappers import ValidationError
-from pytest import fixture, raises
+from pytest import raises
 
 from app.core.schemas import EmailSchema
 from app.settings import settings
@@ -22,58 +22,48 @@ invalid_email_addresses = [
 ]
 
 
-@fixture
-def email():
-    return {
-        "to": "address@domain.com",
-        "from": "address@domain.com",
-        "subject": "subject",
-        "content": "content",
-    }
-
-
-def test_to_field_is_required(email):
-    del email["to"]
+def test_to_field_is_required(message_dict):
+    del message_dict["to"]
     with raises(ValidationError):
-        EmailSchema(**email)
+        EmailSchema(**message_dict)
 
 
-def test_to_field_must_be_email_address(email):
+def test_to_field_must_be_email_address(message_dict):
     for address in invalid_email_addresses:
-        email["to"] = address
+        message_dict["to"] = address
         with raises(ValidationError):
-            EmailSchema(**email)
+            EmailSchema(**message_dict)
 
 
-def test_from_field_has_default_value(email, monkeypatch):
-    del email["from"]
-    assert EmailSchema(**email).from_ == settings.DEFAULT_EMAIL_ADDRESS
+def test_from_field_has_default_value(message_dict):
+    del message_dict["from"]
+    assert EmailSchema(**message_dict).from_ == settings.DEFAULT_EMAIL_ADDRESS
 
 
-def test_from_field_must_be_email_address(email):
+def test_from_field_must_be_email_address(message_dict):
     for address in invalid_email_addresses:
-        email["from"] = address
+        message_dict["from"] = address
         with raises(ValidationError):
-            EmailSchema(**email)
+            EmailSchema(**message_dict)
 
 
-def test_subject_field_is_required(email):
-    del email["subject"]
+def test_subject_field_is_required(message_dict):
+    del message_dict["subject"]
     with raises(ValidationError):
-        EmailSchema(**email)
+        EmailSchema(**message_dict)
 
 
-def test_subject_field_max_length_is_78(email):
-    email["subject"] = 79 * "a"
+def test_subject_field_max_length_is_78(message_dict):
+    message_dict["subject"] = 79 * "a"
     with raises(ValidationError):
-        EmailSchema(**email)
+        EmailSchema(**message_dict)
 
 
-def test_content_field_is_required(email):
-    del email["content"]
+def test_content_field_is_required(message_dict):
+    del message_dict["content"]
     with raises(ValidationError):
-        EmailSchema(**email)
+        EmailSchema(**message_dict)
 
 
-def test_content_type_field_has_default_value(email):
-    assert EmailSchema(**email).content_type == "text/plain"
+def test_content_type_field_has_default_value(message_dict):
+    assert EmailSchema(**message_dict).content_type == "text/html"
