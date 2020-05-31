@@ -16,6 +16,10 @@ test:
 run_worker: broker_init
 	celery -A app.worker worker --loglevel debug
 
+.PHONY: run_api
+run_api: broker_init
+	uvicorn --reload app.api:api
+
 .PHONY: run
 run:
-	uvicorn --reload app.api:api
+	make -j run_worker run_api

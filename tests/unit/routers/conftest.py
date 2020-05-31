@@ -5,24 +5,24 @@ from starlette.testclient import TestClient
 
 from app.api import api
 from app.api.security import ApiKeyChecker, api_key_checker
-from app.core.adapters import get_active_adapter
+from app.core.tasks import get_tasks_producer
 
-mock_adapter = MagicMock()
+mock_producer = MagicMock()
 
 
-def get_active_adapter_override():
-    return mock_adapter
+def get_tasks_producer_override():
+    return mock_producer
 
 
 @fixture
-def adapter():
-    return mock_adapter
+def producer():
+    return mock_producer
 
 
 @fixture
 def client(settings):
     client = TestClient(api)
     api.dependency_overrides[api_key_checker] = ApiKeyChecker(settings)
-    api.dependency_overrides[get_active_adapter] = get_active_adapter_override
+    api.dependency_overrides[get_tasks_producer] = get_tasks_producer_override
     yield client
     api.dependency_overrides = {}
