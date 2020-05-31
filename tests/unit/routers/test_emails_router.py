@@ -8,12 +8,12 @@ from starlette.status import (
 
 
 @fixture(scope="function")
-def send_response(adapter, client, message, message_dict, settings):
-    adapter.reset_mock()
+def send_response(producer, client, message, message_dict, settings):
+    producer.reset_mock()
     yield client.post(
         "/emails", json=message_dict, headers={"x-api-key": settings.API_KEY}
     )
-    adapter.send.assert_called_once_with(message)
+    producer.send_task.assert_called_once_with("SEND_EMAIL", args=[message.dict()])
 
 
 def test_send_email_endpoint_should_accept_post(send_response):
