@@ -2,6 +2,10 @@
   "name": "email-sender",
   "repository": "https://github.com/umluizlima/email-sender",
   "env": {
+    "ENV": {
+      "description": "The environment in which to run the application.",
+      "value": "prod"
+    },
     "API_KEY": {
       "description": "A secret key for API authentication.",
       "generator": "secret"
