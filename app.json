@@ -9,7 +9,29 @@
     "API_KEY": {
       "description": "A secret key for API authentication.",
       "generator": "secret"
+    },
+    "DEFAULT_EMAIL_ADDRESS": {
+      "description": "The default address to be used on from field. It must be set as an authorized sender on the chosen email service",
+      "value": "some-email-address@domain.com"
+    },
+    "MAILJET_API_KEY": {
+      "description": "API key retrieved from Mailjet's dashboard.",
+      "value": "mailjet-api-key"
+    },
+    "MAILJET_API_SECRET": {
+      "description": "API secret retrieved from Mailjet's dashboard.",
+      "value": "mailjet-api-secret"
     }
   },
-  "addons": ["cloudamqp:lemur"]  
+  "addons": ["cloudamqp:lemur"],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
 }
