@@ -4,11 +4,15 @@ from app.core.adapters import get_active_adapter
 from app.core.schemas import EmailSchema
 from app.core.tasks import Task
 
-from .. import worker
+from .base import BaseTask
 
 
-@worker.task(name=Task.SEND_EMAIL)
-@validate_arguments
-def send_email(message: EmailSchema):
-    adapter = get_active_adapter()
-    return adapter.send(message)
+class SendEmailTask(BaseTask):
+    name = Task.SEND_EMAIL
+
+    def __init__(self):
+        self.adapter = get_active_adapter()
+
+    @validate_arguments
+    def run(self, message: EmailSchema):
+        return self.adapter.send(message)
