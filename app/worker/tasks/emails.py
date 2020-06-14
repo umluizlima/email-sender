@@ -15,4 +15,7 @@ class SendEmailTask(BaseTask):
 
     @validate_arguments
     def run(self, message: EmailSchema):
-        return self.adapter.send(message)
+        try:
+            return self.adapter.send(message)
+        except Exception as exc:
+            self.retry(exc=exc)
