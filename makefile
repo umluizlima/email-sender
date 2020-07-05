@@ -5,7 +5,8 @@ install:
 
 .PHONY: broker_init
 broker_init:
-	docker-compose up -d broker
+	docker-compose up -d broker \
+	|| echo "Could not start broker"
 
 .PHONY: test
 test:
@@ -18,7 +19,7 @@ run_worker: broker_init
 
 .PHONY: run_api
 run_api: broker_init
-	uvicorn --reload app.api:api
+	uvicorn --reload --port=8002 app.api:api
 
 .PHONY: run
 run:

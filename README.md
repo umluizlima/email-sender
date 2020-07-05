@@ -43,7 +43,7 @@ make test
 ```console
 make run
 ```
-Access the API documentation on http://localhost:8000/docs and use the default `API_KEY` to authenticate (check it on `Settings` class).
+Access the API documentation on http://localhost:8002/docs and use the default `API_KEY` to authenticate (check it on `Settings` class).
 
 You can run the app and test its API as is, but no emails will be sent. To do so, you'll have to [set up an email service](#setting-up-an-email-service).
 
