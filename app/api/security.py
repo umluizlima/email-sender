@@ -15,7 +15,7 @@ class ApiKeyChecker:
         self.settings = settings
 
     def __call__(self, api_key: str = Security(API_KEY_HEADER)):
-        if api_key != self.settings.API_KEY:
+        if api_key != self.settings.API_KEY.get_secret_value():
             raise HTTPException(
                 status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
             )

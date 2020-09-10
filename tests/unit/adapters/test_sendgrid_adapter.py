@@ -15,7 +15,9 @@ def settings(settings):
 @patch("app.core.adapters.sendgrid.SendGridAPIClient.__init__", return_value=None)
 def test_sendgrid_client_gets_initialized_with_api_key(mock_client_init, settings):
     SendgridAdapter(settings=settings)
-    mock_client_init.assert_called_once_with(api_key=settings.SENDGRID_API_KEY)
+    mock_client_init.assert_called_once_with(
+        api_key=settings.SENDGRID_API_KEY.get_secret_value()
+    )
 
 
 @patch("app.core.adapters.sendgrid.SendGridAPIClient.send")
