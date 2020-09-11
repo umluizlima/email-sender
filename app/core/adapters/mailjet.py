@@ -10,7 +10,10 @@ class MailjetAdapter(BaseAdapter):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.client = Client(
-            auth=(self.settings.MAILJET_API_KEY, self.settings.MAILJET_API_SECRET),
+            auth=(
+                self.settings.MAILJET_API_KEY.get_secret_value(),
+                self.settings.MAILJET_API_SECRET.get_secret_value(),
+            ),
             version="v3.1",
         )
 

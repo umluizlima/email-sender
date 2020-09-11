@@ -8,7 +8,9 @@ from .base import BaseAdapter
 class SendgridAdapter(BaseAdapter):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.client = SendGridAPIClient(api_key=self.settings.SENDGRID_API_KEY)
+        self.client = SendGridAPIClient(
+            api_key=self.settings.SENDGRID_API_KEY.get_secret_value()
+        )
 
     def send(self, message: EmailSchema):
         try:

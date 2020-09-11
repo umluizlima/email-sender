@@ -16,7 +16,11 @@ def settings(settings):
 def test_mailjet_client_gets_initialized_with_parameters(mock_client_init, settings):
     MailjetAdapter(settings=settings)
     mock_client_init.assert_called_once_with(
-        auth=(settings.MAILJET_API_KEY, settings.MAILJET_API_SECRET), version="v3.1"
+        auth=(
+            settings.MAILJET_API_KEY.get_secret_value(),
+            settings.MAILJET_API_SECRET.get_secret_value(),
+        ),
+        version="v3.1",
     )
 
 

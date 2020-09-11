@@ -6,5 +6,5 @@ from app.settings import Environment
 
 def configure(app, settings):
     if settings.SENTRY_DSN and settings.ENV != Environment.DEVELOPMENT:
-        sentry_sdk.init(settings.SENTRY_DSN)
+        sentry_sdk.init(settings.SENTRY_DSN.get_secret_value())
         app.add_middleware(SentryAsgiMiddleware)
