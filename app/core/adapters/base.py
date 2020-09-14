@@ -1,12 +1,12 @@
 from abc import ABCMeta, abstractmethod
 
-from pydantic import BaseSettings
+from app.settings import Settings
 
 from ..schemas import EmailSchema
 
 
 class BaseAdapter(metaclass=ABCMeta):
-    def __init__(self, settings: BaseSettings):
+    def __init__(self, settings: Settings):
         self.settings = settings
 
     @abstractmethod

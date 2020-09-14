@@ -23,12 +23,13 @@ class MailjetAdapter(BaseAdapter):
         except Exception as error:
             raise Exception(f"Error sending {message}", error)
 
-    @staticmethod
-    def _prepare_message(message: EmailSchema) -> Dict:
+    def _prepare_message(self, message: EmailSchema) -> Dict:
         return {
             "Messages": [
                 {
-                    "From": {"Email": message.from_},
+                    "From": {
+                        "Email": message.from_ or self.settings.DEFAULT_EMAIL_ADDRESS
+                    },
                     "To": [{"Email": message.to}],
                     "Subject": message.subject,
                     MailjetAdapter._get_content_attribute(

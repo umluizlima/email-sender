@@ -18,9 +18,8 @@ class SendgridAdapter(BaseAdapter):
         except Exception as error:
             raise Exception(f"Error sending {message}", error)
 
-    @staticmethod
-    def _prepare_message(message: EmailSchema) -> Mail:
-        from_email = Email(message.from_)
+    def _prepare_message(self, message: EmailSchema) -> Mail:
+        from_email = Email(message.from_ or self.settings.DEFAULT_EMAIL_ADDRESS)
         to_email = To(message.to)
         subject = message.subject
         content = Content(message.content_type, message.content)
