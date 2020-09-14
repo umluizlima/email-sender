@@ -24,4 +24,5 @@ class Settings(BaseSettings):
         fields = {"BROKER_URL": {"env": ["BROKER_URL", "CLOUDAMQP_URL"]}}
 
 
-settings = Settings()
+def get_settings():
+    return Settings()
