@@ -1,6 +1,6 @@
 from fastapi import Depends
 
-from ..security import api_key_checker
+from ..dependencies import api_key_checker
 from .emails import router as emails_router
 
 
