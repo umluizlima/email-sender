@@ -2,7 +2,6 @@ from pydantic.error_wrappers import ValidationError
 from pytest import raises
 
 from app.core.schemas import EmailSchema
-from app.settings import settings
 
 invalid_email_addresses = [
     "plainaddress",
@@ -35,9 +34,9 @@ def test_to_field_must_be_email_address(message_dict):
             EmailSchema(**message_dict)
 
 
-def test_from_field_has_default_value(message_dict):
+def test_from_field_id_optional(message_dict):
     del message_dict["from"]
-    assert EmailSchema(**message_dict).from_ == settings.DEFAULT_EMAIL_ADDRESS
+    assert EmailSchema(**message_dict).from_ is None
 
 
 def test_from_field_must_be_email_address(message_dict):

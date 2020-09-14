@@ -1,6 +1,6 @@
-from .emails import SendEmailTask
+from . import send_email
 
 
 def configure(app, settings):
-    for task in [SendEmailTask]:
-        app.tasks.register(task())
+    for task in [send_email]:
+        app.tasks.register(task.configure(settings))
