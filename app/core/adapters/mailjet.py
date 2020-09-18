@@ -28,9 +28,10 @@ class MailjetAdapter(BaseAdapter):
             "Messages": [
                 {
                     "From": {
-                        "Email": message.from_ or self.settings.DEFAULT_EMAIL_ADDRESS
+                        "Email": message.from_email
+                        or self.settings.DEFAULT_EMAIL_ADDRESS
                     },
-                    "To": [{"Email": message.to}],
+                    "To": [{"Email": message.to_email}],
                     "Subject": message.subject,
                     MailjetAdapter._get_content_attribute(
                         message.content_type

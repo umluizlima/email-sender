@@ -11,4 +11,4 @@ router = APIRouter()
 
 @router.post("/emails", status_code=HTTP_202_ACCEPTED)
 def send(message: EmailSchema, producer=Depends(tasks_producer)):
-    producer.send_task(Task.SEND_EMAIL, args=[message.dict()])
+    producer.send_task(Task.SEND_EMAIL, args=[message.dict(by_alias=True)])

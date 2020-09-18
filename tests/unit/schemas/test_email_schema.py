@@ -36,7 +36,7 @@ def test_to_field_must_be_email_address(message_dict):
 
 def test_from_field_id_optional(message_dict):
     del message_dict["from"]
-    assert EmailSchema(**message_dict).from_ is None
+    assert EmailSchema(**message_dict).from_email is None
 
 
 def test_from_field_must_be_email_address(message_dict):

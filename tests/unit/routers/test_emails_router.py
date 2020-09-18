@@ -15,7 +15,9 @@ def send_response(producer, client, message, message_dict, settings):
         json=message_dict,
         headers={"x-api-key": settings.API_KEY.get_secret_value()},
     )
-    producer.send_task.assert_called_once_with("SEND_EMAIL", args=[message.dict()])
+    producer.send_task.assert_called_once_with(
+        "SEND_EMAIL", args=[message.dict(by_alias=True)]
+    )
 
 
 def test_send_email_endpoint_should_accept_post(send_response):
