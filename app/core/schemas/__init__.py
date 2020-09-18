@@ -1,1 +1,1 @@
-from .email import EmailSchema
+from .email import ContentType, EmailSchema
