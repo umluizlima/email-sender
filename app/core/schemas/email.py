@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic import BaseModel, constr, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field
 
 
 class ContentType(str, Enum):
@@ -14,6 +14,6 @@ class BaseEmailSchema(BaseModel):
 
 
 class EmailSchema(BaseEmailSchema):
-    subject: constr(max_length=78)
+    subject: str = Field(max_length=78)
     content: str
     content_type: ContentType = ContentType.TEXT_HTML
