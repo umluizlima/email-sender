@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     MAILJET_API_SECRET: SecretStr = "get_your_api_secret_from_mailjet_dashboard"
     BROKER_URL: str = "amqp://rabbitmq:rabbitmq@localhost"
     BROKER_POOL_LIMIT: Optional[int] = 1
+    TEMPLATES_FOLDER: str = "templates"
 
     class Config:
         env_file = ".env"
