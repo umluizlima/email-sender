@@ -7,6 +7,7 @@ from app.settings import Settings
 
 class Task(str, Enum):
     SEND_EMAIL = "SEND_EMAIL"
+    SEND_TRANSACTIONAL = "SEND_TRANSACTIONAL"
 
 
 def get_celery_app(name: str, settings: Settings, **kwargs):

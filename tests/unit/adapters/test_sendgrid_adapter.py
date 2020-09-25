@@ -21,9 +21,9 @@ def test_sendgrid_client_gets_initialized_with_api_key(mock_client_init, setting
 
 
 @patch("app.core.adapters.sendgrid.SendGridAPIClient.send")
-def test_adapter_send_calls_client_send(mock_client_send, message, settings):
+def test_adapter_send_calls_client_send(mock_client_send, email_message, settings):
     adapter = SendgridAdapter(settings=settings)
-    adapter.send(message)
+    adapter.send(email_message)
     mock_client_send.assert_called_once()
 
 

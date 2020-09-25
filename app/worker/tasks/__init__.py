@@ -1,6 +1,6 @@
-from . import send_email
+from . import send_email, send_transactional
 
 
 def configure(app, settings):
-    for task in [send_email]:
+    for task in [send_email, send_transactional]:
         app.tasks.register(task.configure(settings))
