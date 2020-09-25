@@ -8,15 +8,15 @@ from starlette.status import (
 
 
 @fixture(scope="function")
-def send_response(producer, client, message, message_dict, settings):
+def send_response(producer, client, email_message, email_message_dict, settings):
     producer.reset_mock()
     yield client.post(
         "/api/v1/emails",
-        json=message_dict,
+        json=email_message_dict,
         headers={"x-api-key": settings.API_KEY.get_secret_value()},
     )
     producer.send_task.assert_called_once_with(
-        "SEND_EMAIL", args=[message.dict(by_alias=True)]
+        "SEND_EMAIL", args=[email_message.dict(by_alias=True)]
     )
 
 

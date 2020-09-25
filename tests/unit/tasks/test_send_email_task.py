@@ -13,6 +13,6 @@ def test_task_send_email_validates_payload():
         SendEmailTask(mock_adapter).run({})
 
 
-def test_task_send_email_calls_adapter(message):
-    SendEmailTask(mock_adapter).run(message)
-    mock_adapter.send.assert_called_once_with(message)
+def test_task_send_email_calls_adapter(email_message):
+    SendEmailTask(mock_adapter).run(email_message)
+    mock_adapter.send.assert_called_once_with(email_message)

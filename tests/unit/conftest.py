@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from app.core.schemas import EmailSchema
+from app.core.schemas import EmailSchema, TransactionalSchema
 from app.settings import Settings
 
 
@@ -10,7 +10,7 @@ def settings():
 
 
 @fixture
-def message_dict():
+def email_message_dict():
     return {
         "from": "from@test.com",
         "to": "to@test.com",
@@ -20,5 +20,20 @@ def message_dict():
 
 
 @fixture
-def message(message_dict):
-    return EmailSchema(**message_dict)
+def email_message(email_message_dict):
+    return EmailSchema(**email_message_dict)
+
+
+@fixture
+def transactional_message_dict():
+    return {
+        "from": "from@test.com",
+        "to": "to@test.com",
+        "type": "ABC",
+        "data": {},
+    }
+
+
+@fixture
+def transactional_message(transactional_message_dict):
+    return TransactionalSchema(**transactional_message_dict)
