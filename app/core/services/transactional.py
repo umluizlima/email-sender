@@ -1,5 +1,3 @@
-from typing import Dict
-
 from app.core.schemas import EmailSchema, TransactionalSchema
 from app.settings import Settings
 
@@ -7,10 +5,8 @@ from .template import TemplateService
 
 
 class TransactionalService:
-    def __init__(
-        self, transactional_templates: Dict, template_service: TemplateService
-    ):
-        self.transactional_templates = transactional_templates
+    def __init__(self, settings: Settings, template_service: TemplateService):
+        self.transactional_templates = settings.TRANSACTIONAL_TEMPLATES
         self.template_service = template_service
 
     def build_email(self, transactional: TransactionalSchema) -> EmailSchema:

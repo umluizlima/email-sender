@@ -27,8 +27,9 @@ def transactional_dict():
 
 
 @fixture
-def transactional_service():
-    return TransactionalService(transactional_templates, mock_template_service)
+def transactional_service(settings):
+    settings.TRANSACTIONAL_TEMPLATES = transactional_templates
+    return TransactionalService(settings, mock_template_service)
 
 
 def test_transactional_service_builds_email(transactional_service, transactional_dict):
