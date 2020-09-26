@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from app.core.schemas import EmailSchema, TransactionalSchema
+from app.core.schemas import EmailSchema, TransactionalSchema, TransactionalType
 from app.settings import Settings
 
 
@@ -29,7 +29,7 @@ def transactional_message_dict():
     return {
         "from": "from@test.com",
         "to": "to@test.com",
-        "type": "ABC",
+        "type": TransactionalType.ACCESS_CODE.value,
         "data": {},
     }
 
