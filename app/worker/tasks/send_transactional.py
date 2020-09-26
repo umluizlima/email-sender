@@ -31,5 +31,5 @@ class SendTransactionalTask(BaseTask):
 def configure(settings: Settings):
     tasks_producer = get_tasks_producer(settings)
     template_service = TemplateService(settings)
-    transactional_service = TransactionalService(settings, template_service)
+    transactional_service = TransactionalService(template_service)
     return SendTransactionalTask(tasks_producer, transactional_service)

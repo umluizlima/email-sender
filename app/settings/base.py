@@ -1,10 +1,9 @@
-from typing import Dict, Optional
+from typing import Optional
 
 from pydantic import BaseSettings, EmailStr, SecretStr
 
 from .email_service import EmailService
 from .environment import Environment
-from .transactional import TRANSACTIONALS
 
 
 class Settings(BaseSettings):
@@ -19,7 +18,6 @@ class Settings(BaseSettings):
     BROKER_URL: str = "amqp://rabbitmq:rabbitmq@localhost"
     BROKER_POOL_LIMIT: Optional[int] = 1
     TEMPLATES_FOLDER: str = "templates"
-    TRANSACTIONAL_TEMPLATES: Dict[str, str] = TRANSACTIONALS
 
     class Config:
         env_file = ".env"
