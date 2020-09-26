@@ -19,3 +19,6 @@ class TransactionalType(Enum):
 class TransactionalSchema(BaseEmailSchema):
     transactional_type: TransactionalType = Field(alias="type")
     transactional_data: Dict = Field({}, alias="data")
+
+    class Config:
+        use_enum_values = True
