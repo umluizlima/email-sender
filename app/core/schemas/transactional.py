@@ -6,7 +6,7 @@ from pydantic import Field
 from .email import BaseEmailSchema
 
 
-class TransactionalType(Enum):
+class Transactional(Enum):
     ACCESS_CODE = ("ACCESS_CODE", "access_code.html")
 
     def __new__(cls, value: str, template: str):
@@ -17,7 +17,7 @@ class TransactionalType(Enum):
 
 
 class TransactionalSchema(BaseEmailSchema):
-    transactional_type: TransactionalType = Field(alias="type")
+    transactional_type: Transactional = Field(alias="type")
     transactional_data: Dict = Field({}, alias="data")
 
     class Config:

@@ -1,2 +1,2 @@
 from .email import ContentType, EmailSchema
-from .transactional import TransactionalSchema, TransactionalType
+from .transactional import TransactionalSchema, Transactional

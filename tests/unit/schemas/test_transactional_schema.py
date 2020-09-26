@@ -1,7 +1,7 @@
 from pydantic.error_wrappers import ValidationError
 from pytest import raises
 
-from app.core.schemas import TransactionalSchema, TransactionalType
+from app.core.schemas import TransactionalSchema, Transactional
 
 
 def test_transactional_type_field_is_required(transactional_message_dict):
@@ -11,7 +11,7 @@ def test_transactional_type_field_is_required(transactional_message_dict):
 
 
 def test_transactional_type_field_is_enum(transactional_message_dict):
-    transactional_message_dict["type"] = TransactionalType.ACCESS_CODE.value + "a"
+    transactional_message_dict["type"] = Transactional.ACCESS_CODE.value + "a"
     with raises(ValidationError):
         TransactionalSchema(**transactional_message_dict)
 

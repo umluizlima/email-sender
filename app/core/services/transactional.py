@@ -1,4 +1,4 @@
-from app.core.schemas import EmailSchema, TransactionalSchema, TransactionalType
+from app.core.schemas import EmailSchema, TransactionalSchema, Transactional
 
 from .template import TemplateService
 
@@ -9,7 +9,7 @@ class TransactionalService:
 
     def build_email(self, transactional: TransactionalSchema) -> EmailSchema:
         rendered_template = self.template_service.render_template(
-            TransactionalType(transactional.transactional_type).template,
+            Transactional(transactional.transactional_type).template,
             transactional.transactional_data,
         )
         return EmailSchema(
