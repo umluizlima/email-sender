@@ -6,11 +6,11 @@ from pydantic import Field
 from .email import BaseEmailSchema
 
 
-class Transactional(Enum):
+class Transactional(str, Enum):
     ACCESS_CODE = ("ACCESS_CODE", "access_code.html")
 
     def __new__(cls, value: str, template: str):
-        obj = object.__new__(cls)
+        obj = str.__new__(cls)
         obj._value_ = value
         obj.template = template
         return obj
