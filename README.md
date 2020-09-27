@@ -3,7 +3,8 @@ A service to send email messages.
 
 ### Features
 - Multiple email service integrations that can be easily switched;
-- Send emails with POST requests;
+- Send custom emails or transactionals with POST requests;
+- Transactional messages from [jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templates
 - Requests must be authenticated with the [x-api-key](https://stoplight.io/blog/api-keys-best-practices-to-authenticate-apis/) header;
 - Request body validation with [pydantic](https://pydantic-docs.helpmanual.io/);
 - Auto-generated API docs with [fastapi](https://fastapi.tiangolo.com/)
@@ -47,6 +48,8 @@ Access the API documentation on http://localhost:8000/docs and use the default `
 
 You can run the app and test its API as is, but no emails will be sent. To do so, you'll have to [set up an email service](#setting-up-an-email-service).
 
+Transactional messages make it easier to trigger events from other services, try [including a new Transactional](#including-a-new-transactional) based on your needs.
+
 ### Setting up an email service
 
 The email service can be chosen by setting the `EMAIL_SERVICE` environment variable to one of the values available on `EmailService` enum ("mailjet" by default).
@@ -67,6 +70,15 @@ There are many email services available out there that you can choose from. If t
 1. Creating a `YourEmailServiceAdapter` class that extends `BaseAdapter` and implements its `send` method;
 2. Adding a value to `EmailService` enum corresponding to your new service;
 3. Mapping your new service on the `ADAPTERS` dictionary, so it can be chosen from by the `EMAIL_SERVICE` environment variable;
+
+### Including a new Transactional
+
+You should be able to include a new Transactional message type by:
+
+1. Adding a [jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) flavored template file to the `/templates` folder;
+2. Mapping it as a new value on the `Transactional` enum including its `type`, that should uniquely identify the transactional, and its `template` file name;
+   
+Now your new Transactional can be triggered from the API by specifying its identifier and passing the data it needs to render.
 
 ## Deployment
 
