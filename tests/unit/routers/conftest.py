@@ -5,7 +5,7 @@ from starlette.testclient import TestClient
 
 from app.api import api
 from app.api.dependencies import tasks_producer
-from app.settings import get_settings, Settings
+from app.settings import Settings, get_settings
 
 mock_producer = MagicMock()
 

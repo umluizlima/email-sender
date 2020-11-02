@@ -1,7 +1,7 @@
 from pydantic.error_wrappers import ValidationError
 from pytest import raises
 
-from app.core.schemas import TransactionalSchema, Transactional
+from app.core.schemas import Transactional, TransactionalSchema
 
 
 def test_transactional_type_field_is_required(transactional_message_dict):
