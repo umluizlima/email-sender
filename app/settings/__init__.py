@@ -1,3 +1,3 @@
-from .base import get_settings, Settings
+from .base import Settings, get_settings
 from .email_service import EmailService
 from .environment import Environment

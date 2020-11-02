@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from app.core.schemas import EmailSchema, TransactionalSchema, Transactional
+from app.core.schemas import EmailSchema, Transactional, TransactionalSchema
 from app.settings import Settings
 
 

@@ -1,8 +1,8 @@
 from pydantic import validate_arguments
 
-from app.core.schemas import EmailSchema, TransactionalSchema
+from app.core.schemas import TransactionalSchema
 from app.core.services import TemplateService, TransactionalService
-from app.core.tasks import get_tasks_producer, Task
+from app.core.tasks import Task, get_tasks_producer
 from app.settings import Settings
 
 from .base import BaseTask

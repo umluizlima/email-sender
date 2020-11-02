@@ -1,4 +1,4 @@
-from app.core.schemas import EmailSchema, TransactionalSchema, Transactional
+from app.core.schemas import EmailSchema, Transactional, TransactionalSchema
 
 from .template import TemplateService
 
