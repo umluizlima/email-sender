@@ -1,4 +1,11 @@
 repos:
+-   repo: https://github.com/pycqa/isort
+    rev: 5.5.2
+    hooks:
+    - id: isort
+      files: 'app/.*'
+    - id: isort
+      files: 'tests/.*'
 -   repo: https://github.com/psf/black
     rev: stable
     hooks:
